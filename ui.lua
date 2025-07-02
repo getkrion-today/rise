@@ -239,12 +239,6 @@ local function createHighlight(size, pos)
 	end
 end
 
-getcustomasset = not inputService.TouchEnabled and assetfunction and function(path)
-	return downloadFile(path, assetfunction)
-end or function(path)
-	return getcustomassets[path] or ''
-end
-
 local function getTableSize(tab)
 	local ind = 0
 	for _ in tab do ind += 1 end
@@ -309,26 +303,6 @@ local function randomString()
 	return table.concat(array)
 end
 
-local function writeFont()
-	if not assetfunction then return 'rbxasset://fonts/productsans.json' end
-	writefile('newvape/assets/Krion/Krionfont.json', httpService:JSONEncode({
-		name = 'ProductSans',
-		faces = {
-			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/SF-Pro-Rounded-Light.otf'), name = 'Light', weight = 300},
-			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/SF-Pro-Rounded-Regular.otf'), name = 'Regular', weight = 400},
-			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/SF-Pro-Rounded-Medium.otf'), name = 'Medium', weight = 500},
-			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/Icon-1.ttf'), name = 'Icon1', weight = 600},
-			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/Icon-3.ttf'), name = 'Icon3', weight = 800}
-		}
-	}))
-	return getcustomasset('newvape/assets/Krion/Krionfont.json')
-end
-
-if inputService.TouchEnabled then
-	writefile('newvape/profiles/gui.txt', 'new')
-	return
-end
-
 do
 	local Krionfont = writeFont()
 	uipallet.Font = Font.new(Krionfont, Enum.FontWeight.Regular)
@@ -337,7 +311,7 @@ do
 	uipallet.FontIcon1 = Font.new(Krionfont, Enum.FontWeight.SemiBold)
 	uipallet.FontIcon3 = Font.new(Krionfont, Enum.FontWeight.ExtraBold)
 
-	local res = isfile('newvape/profiles/color.txt') and loadJson('newvape/profiles/color.txt')
+	local res = isfile('nil') and loadJson('nil')
 	if res then
 		uipallet.Main = res.Main and Color3.fromRGB(unpack(res.Main)) or uipallet.Main
 		uipallet.Text = res.Text and Color3.fromRGB(unpack(res.Text)) or uipallet.Text
