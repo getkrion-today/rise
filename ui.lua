@@ -119,8 +119,8 @@ local themecolors = {
 }
 
 local getcustomassets = {
-	['newvape/assets/rise/slice.png'] = 'rbxasset://risesix/slice.png',
-	['newvape/assets/rise/blur.png'] = 'rbxasset://risesix/blur.png',
+	['newvape/assets/Krion/slice.png'] = 'rbxasset://Krionsix/slice.png',
+	['newvape/assets/Krion/blur.png'] = 'rbxasset://Krionsix/blur.png',
 	['newvape/assets/new/blur.png'] = 'rbxassetid://14898786664',
 }
 
@@ -328,17 +328,17 @@ end
 
 local function writeFont()
 	if not assetfunction then return 'rbxasset://fonts/productsans.json' end
-	writefile('newvape/assets/rise/risefont.json', httpService:JSONEncode({
+	writefile('newvape/assets/Krion/Krionfont.json', httpService:JSONEncode({
 		name = 'ProductSans',
 		faces = {
-			{style = 'normal', assetId = getcustomasset('newvape/assets/rise/SF-Pro-Rounded-Light.otf'), name = 'Light', weight = 300},
-			{style = 'normal', assetId = getcustomasset('newvape/assets/rise/SF-Pro-Rounded-Regular.otf'), name = 'Regular', weight = 400},
-			{style = 'normal', assetId = getcustomasset('newvape/assets/rise/SF-Pro-Rounded-Medium.otf'), name = 'Medium', weight = 500},
-			{style = 'normal', assetId = getcustomasset('newvape/assets/rise/Icon-1.ttf'), name = 'Icon1', weight = 600},
-			{style = 'normal', assetId = getcustomasset('newvape/assets/rise/Icon-3.ttf'), name = 'Icon3', weight = 800}
+			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/SF-Pro-Rounded-Light.otf'), name = 'Light', weight = 300},
+			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/SF-Pro-Rounded-Regular.otf'), name = 'Regular', weight = 400},
+			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/SF-Pro-Rounded-Medium.otf'), name = 'Medium', weight = 500},
+			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/Icon-1.ttf'), name = 'Icon1', weight = 600},
+			{style = 'normal', assetId = getcustomasset('newvape/assets/Krion/Icon-3.ttf'), name = 'Icon3', weight = 800}
 		}
 	}))
-	return getcustomasset('newvape/assets/rise/risefont.json')
+	return getcustomasset('newvape/assets/Krion/Krionfont.json')
 end
 
 if inputService.TouchEnabled then
@@ -347,12 +347,12 @@ if inputService.TouchEnabled then
 end
 
 do
-	local risefont = writeFont()
-	uipallet.Font = Font.new(risefont, Enum.FontWeight.Regular)
-	uipallet.FontSemiBold = Font.new(risefont, Enum.FontWeight.Medium)
-	uipallet.FontLight = Font.new(risefont, Enum.FontWeight.Light)
-	uipallet.FontIcon1 = Font.new(risefont, Enum.FontWeight.SemiBold)
-	uipallet.FontIcon3 = Font.new(risefont, Enum.FontWeight.ExtraBold)
+	local Krionfont = writeFont()
+	uipallet.Font = Font.new(Krionfont, Enum.FontWeight.Regular)
+	uipallet.FontSemiBold = Font.new(Krionfont, Enum.FontWeight.Medium)
+	uipallet.FontLight = Font.new(Krionfont, Enum.FontWeight.Light)
+	uipallet.FontIcon1 = Font.new(Krionfont, Enum.FontWeight.SemiBold)
+	uipallet.FontIcon3 = Font.new(Krionfont, Enum.FontWeight.ExtraBold)
 
 	local res = isfile('newvape/profiles/color.txt') and loadJson('newvape/profiles/color.txt')
 	if res then
@@ -407,7 +407,7 @@ do
 		return Color3.new(1, 1, 1)
 	end
 
-	function mainapi:RiseColor(vec)
+	function mainapi:KrionColor(vec)
 		local blend = getBlendFactor(vec)
 		if uipallet.ThirdColor then
 			if blend <= 0.5 then
@@ -418,7 +418,7 @@ do
 		return uipallet.SecondaryColor:Lerp(uipallet.MainColor, blend)
 	end
 
-	function mainapi:RiseColorCustom(v, offset)
+	function mainapi:KrionColorCustom(v, offset)
 		local blend = getBlendFactor(Vector2.new(offset))
 		if v[3] then
 			if blend <= 0.5 then
@@ -1671,7 +1671,7 @@ function mainapi:CreateCategory(categorysettings)
 	icon.Size = UDim2.fromOffset(30, 30)
 	icon.Position = UDim2.fromOffset(-3, 0)
 	icon.BackgroundTransparency = 1
-	icon.Text = categorysettings.RiseIcon or 'a'
+	icon.Text = categorysettings.KrionIcon or 'a'
 	icon.TextColor3 = color.Dark(uipallet.Text, 0.21)
 	icon.TextSize = 16
 	icon.FontFace = uipallet['FontIcon'..(categorysettings.Font or 1)]
@@ -1778,7 +1778,7 @@ function mainapi:CreateCategory(categorysettings)
 			end
 			self.Enabled = not self.Enabled
 			tween:Tween(mtitle, TweenInfo.new(0.1), {
-				TextColor3 = self.Enabled and mainapi:RiseColor(mtitle.AbsolutePosition) or color.Dark(uipallet.Text, 0.21)
+				TextColor3 = self.Enabled and mainapi:KrionColor(mtitle.AbsolutePosition) or color.Dark(uipallet.Text, 0.21)
 			})
 			if not self.Enabled then
 				for _, v in self.Connections do
@@ -2208,7 +2208,7 @@ function mainapi:CreateNotification(title, text, duration, type, continued)
 		})
 	end
 	if title == 'Finished Loading' then
-		title = 'Rise'
+		title = 'Krion'
 		text = 'Reconnecting to nothing...'
 		duration = 5
 	end
@@ -2572,7 +2572,7 @@ local swatermark = Instance.new('TextLabel')
 swatermark.Size = UDim2.fromOffset(70, 40)
 swatermark.Position = UDim2.fromOffset(28, 22)
 swatermark.BackgroundTransparency = 1
-swatermark.Text = 'Rise'
+swatermark.Text = 'Krion'
 swatermark.TextColor3 = uipallet.Text
 swatermark.TextSize = 38
 swatermark.TextXAlignment = Enum.TextXAlignment.Left
@@ -2643,36 +2643,36 @@ end))
 
 mainapi:CreateCategory({
 	Name = 'Search',
-	RiseIcon = 'U',
+	KrionIcon = 'U',
 	Font = 3
 })
 mainapi:CreateCategory({
 	Name = 'Combat',
-	RiseIcon = 'a'
+	KrionIcon = 'a'
 })
 mainapi:CreateCategory({
 	Name = 'Movement',
 	RealName = 'Blatant',
-	RiseIcon = 'b'
+	KrionIcon = 'b'
 })
 mainapi:CreateCategory({
 	Name = 'Player',
 	RealName = 'Utility',
-	RiseIcon = 'c'
+	KrionIcon = 'c'
 })
 mainapi:CreateCategory({
 	Name = 'Render',
-	RiseIcon = 'g'
+	KrionIcon = 'g'
 })
 mainapi:CreateCategory({
 	Name = 'Exploit',
 	RealName = 'World',
-	RiseIcon = 'a'
+	KrionIcon = 'a'
 })
 mainapi:CreateCategory({
 	Name = 'Ghost',
 	RealName = 'Legit',
-	RiseIcon = 'f'
+	KrionIcon = 'f'
 })
 mainapi.Categories.Minigames = mainapi.Categories.Utility
 mainapi.Categories.Inventory = mainapi.Categories.Utility
@@ -2683,7 +2683,7 @@ mainapi.Categories.Inventory = mainapi.Categories.Utility
 mainapi:CreateCategoryProfile({
 	Name = 'CaS',
 	RealName = 'Profiles',
-	RiseIcon = 'm',
+	KrionIcon = 'm',
 	Font = 3,
 	Size = UDim2.fromOffset(17, 10),
 	Position = UDim2.fromOffset(12, 16),
@@ -2692,7 +2692,7 @@ mainapi:CreateCategoryProfile({
 
 mainapi:CreateCategoryTheme({
 	Name = 'Themes',
-	RiseIcon = 'U',
+	KrionIcon = 'U',
 	Font = 3
 })
 
@@ -2833,7 +2833,7 @@ scaleslider = mainapi.Categories.Main:CreateSlider({
 })
 mainapi.Categories.Main:CreateDropdown({
 	Name = 'GUI Theme',
-	List = {'rise', 'new', 'old'},
+	List = {'Krion', 'new', 'old'},
 	Function = function(val, mouse)
 		if mouse then
 			writefile('newvape/profiles/gui.txt', val)
@@ -2885,7 +2885,7 @@ mainapi.Categories.Main:CreateButton({
 ]]
 
 local interface = mainapi:CreateOverlay({
-	Name = 'RiseInterface',
+	Name = 'KrionInterface',
 	Function = function()
 		mainapi:UpdateTextGUI()
 	end,
@@ -2962,7 +2962,7 @@ local watermark = Instance.new('TextLabel')
 watermark.Size = UDim2.fromOffset(70, 40)
 watermark.Position = UDim2.fromOffset(12, guiService:GetGuiInset().Y + 5)
 watermark.BackgroundTransparency = 1
-watermark.Text = 'Rise'
+watermark.Text = 'Krion'
 watermark.TextColor3 = Color3.new(1, 1, 1)
 watermark.TextSize = 43
 watermark.TextXAlignment = Enum.TextXAlignment.Left
@@ -3040,7 +3040,7 @@ local targetinfoname = Instance.new('TextLabel')
 targetinfoname.Size = UDim2.fromOffset(60, 30)
 targetinfoname.Position = UDim2.fromOffset(158, 21)
 targetinfoname.BackgroundTransparency = 1
-targetinfoname.Text = 'Rise'
+targetinfoname.Text = 'Krion'
 targetinfoname.TextSize = 26
 targetinfoname.TextXAlignment = Enum.TextXAlignment.Left
 targetinfoname.TextColor3 = uipallet.MainColor
@@ -3184,7 +3184,7 @@ function mainapi:UpdateTextGUI(afterload)
 			if v.Enabled or table.find(found, i) then
 				if interfaceshow.Value == 'Exclude render' and v.Category == 'Render' then continue end
 				if interfaceshow.Value == 'Only bound' and #v.Bind <= 0 then continue end
-				if i == 'RiseInterface' then continue end
+				if i == 'KrionInterface' then continue end
 				local holder = Instance.new('Frame')
 				holder.Name = i
 				holder.Size = UDim2.fromOffset(0, 22)
@@ -3225,7 +3225,7 @@ function mainapi:UpdateTextGUI(afterload)
 					holderline.Size = UDim2.fromOffset(2, 18)
 					holderline.Position = UDim2.new(1, 0, 0, 2)
 					holderline.BackgroundTransparency = 1
-					holderline.Image = getcustomasset('newvape/assets/rise/slice.png')
+					holderline.Image = getcustomasset('newvape/assets/Krion/slice.png')
 					holderline.ImageColor3 = uipallet.MainColor
 					holderline.ZIndex = -1
 					holderline.Parent = holderbackground
@@ -3288,7 +3288,7 @@ function mainapi:UpdateGUI(hue, sat, val, default)
 			if interfacearraycolor.Value == 'Static' then
 				v.Text.TextColor3 = uipallet.MainColor
 			else
-				v.Text.TextColor3 = self:RiseColor(interfacearraycolor.Value == 'Fade' and v.Text.AbsolutePosition / 2 or Vector2.new())
+				v.Text.TextColor3 = self:KrionColor(interfacearraycolor.Value == 'Fade' and v.Text.AbsolutePosition / 2 or Vector2.new())
 			end
 			if v.Color then
 				v.Color.ImageColor3 = v.Text.TextColor3
@@ -3298,8 +3298,8 @@ function mainapi:UpdateGUI(hue, sat, val, default)
 
 	if targetinfoobj.Button.Enabled then
 		targetinfogradient.Color = ColorSequence.new({
-			ColorSequenceKeypoint.new(0, color.Dark(self:RiseColor(targetinfobkg.AbsolutePosition / 2), 0.5)),
-			ColorSequenceKeypoint.new(1, color.Dark(self:RiseColor((targetinfobkg.AbsolutePosition + Vector2.new(0, 100)) / 2), 0.5))
+			ColorSequenceKeypoint.new(0, color.Dark(self:KrionColor(targetinfobkg.AbsolutePosition / 2), 0.5)),
+			ColorSequenceKeypoint.new(1, color.Dark(self:KrionColor((targetinfobkg.AbsolutePosition + Vector2.new(0, 100)) / 2), 0.5))
 		})
 		targetinfohealthgradient.Color = ColorSequence.new({
 			ColorSequenceKeypoint.new(0, uipallet.MainColor),
@@ -3313,11 +3313,11 @@ function mainapi:UpdateGUI(hue, sat, val, default)
 	if not clickgui.Visible then return end
 
 	swatermarkversion.TextColor3 = uipallet.MainColor
-	categoryhighlight.BackgroundColor3 = color.Dark(self:RiseColor(categoryhighlight.AbsolutePosition), 0.2)
+	categoryhighlight.BackgroundColor3 = color.Dark(self:KrionColor(categoryhighlight.AbsolutePosition), 0.2)
 
 	for _, button in self.Modules do
 		if button.Enabled then
-			button.Object.Title.TextColor3 = self:RiseColor(button.Object.Title.AbsolutePosition)
+			button.Object.Title.TextColor3 = self:KrionColor(button.Object.Title.AbsolutePosition)
 		end
 
 		for _, option in button.Options do
@@ -3332,9 +3332,9 @@ function mainapi:UpdateGUI(hue, sat, val, default)
 	end
 	for i, v in uipallet.ThemeObjects do
 		i.Color = ColorSequence.new({
-			ColorSequenceKeypoint.new(0, self:RiseColorCustom(v, 0)),
-			ColorSequenceKeypoint.new(0.5, self:RiseColorCustom(v, 300)),
-			ColorSequenceKeypoint.new(1, self:RiseColorCustom(v, 700))
+			ColorSequenceKeypoint.new(0, self:KrionColorCustom(v, 0)),
+			ColorSequenceKeypoint.new(0.5, self:KrionColorCustom(v, 300)),
+			ColorSequenceKeypoint.new(1, self:KrionColorCustom(v, 700))
 		})
 	end
 end
