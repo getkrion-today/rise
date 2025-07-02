@@ -6,7 +6,7 @@ local mainapi = {
 		Value = 0.52
 	},
 	HeldKeybinds = {},
-	Keybind = {'RightShift'},
+	Keybind = {'Insert'},
 	Loaded = false,
 	Legit = {Modules = {}},
 	Libraries = {},
@@ -21,7 +21,7 @@ local mainapi = {
 	Scale = {Value = 1},
 	ToggleNotifications = {Enabled = true},
 	ThreadFix = setthreadidentity and true or false,
-	Version = '6.1.30',
+	Version = 'Beta',
 	Windows = {}
 }
 
